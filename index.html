@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faiqa Khan | AI Portfolio</title>
+<meta name="description" content="One-page AI and Generative AI portfolio of Faiqa Khan.">
+<style>
+:root{
+  --bg1:#6d28d9;
+  --bg2:#9333ea;
+  --bg3:#4f46e5;
+  --panel:#1f1f22;
+  --panel2:#2b2b2f;
+  --text:#f8fafc;
+  --muted:#a9acb5;
+  --accent:#a855f7;
+  --accent2:#7c3aed;
+  --line:#3c3c42;
+  --card:#29292d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255,255,255,.18) 0 2px, transparent 3px),
+    radial-gradient(circle at 88% 70%, rgba(255,255,255,.12) 0 3px, transparent 4px),
+    linear-gradient(135deg,var(--bg1),var(--bg2) 45%,var(--bg3));
+  color:var(--text);
+  min-height:100vh;
+}
+body:before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none;
+  background:
+    linear-gradient(125deg, transparent 0 12%, rgba(255,255,255,.08) 12% 17%, transparent 17% 100%),
+    linear-gradient(310deg, transparent 0 78%, rgba(255,255,255,.07) 78% 84%, transparent 84% 100%);
+}
+.app-shell{
+  width:min(1180px,94vw);
+  height:min(720px,90vh);
+  margin:5vh auto;
+  background:var(--panel);
+  border-radius:26px;
+  box-shadow:0 30px 80px rgba(16,0,40,.38);
+  display:grid;
+  grid-template-columns:300px 1fr 66px;
+  overflow:hidden;
+  position:relative;
+}
+.profile{
+  background:linear-gradient(180deg,#303034,#262629);
+  border-right:1px solid #34343a;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:38px 28px 24px;
+  text-align:center;
+}
+.avatar{
+  width:96px;height:96px;border-radius:50%;
+  margin:0 auto 18px;
+  display:grid;place-items:center;
+  font-size:34px;font-weight:800;
+  color:#fff;
+  background:linear-gradient(135deg,#c084fc,#7c3aed);
+  border:5px solid #f3e8ff;
+}
+.profile h1{font-size:26px;margin:8px 0 4px}
+.profile .role{color:var(--muted);font-size:14px;margin-bottom:18px}
+.profile .short{
+  color:#c9cad0;font-size:13px;line-height:1.65;
+  margin:0 auto 20px;max-width:220px;
+}
+.socials{display:flex;justify-content:center;gap:10px;margin:12px 0 18px}
+.socials a{
+  width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  color:#fff;text-decoration:none;border:1px solid #4b4b51;
+}
+.profile-btn{
+  display:inline-flex;justify-content:center;align-items:center;
+  text-decoration:none;color:#fff;border:1px solid #6a6a72;
+  border-radius:20px;padding:10px 16px;font-size:13px;
+  transition:.2s;
+}
+.profile-btn:hover{background:#3b3b40;border-color:#a855f7}
+.small-foot{font-size:11px;color:#858894;margin-top:20px}
+
+.content{
+  position:relative;
+  overflow-y:auto;
+  scroll-snap-type:y proximity;
+  background:#1f1f22;
+}
+.content::-webkit-scrollbar{width:8px}
+.content::-webkit-scrollbar-thumb{background:#4b4b52;border-radius:10px}
+.section{
+  min-height:100%;
+  padding:58px 56px;
+  scroll-snap-align:start;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border-bottom:1px solid #29292e;
+}
+.eyebrow{
+  color:#c084fc;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:12px;font-weight:800;margin-bottom:12px;
+}
+.hero-title{
+  font-size:58px;line-height:1.05;margin:0 0 12px;
+  max-width:720px;
+}
+.hero-sub{color:var(--muted);font-size:18px;margin-bottom:28px}
+.hero-pills,.skill-grid,.tech{
+  display:flex;flex-wrap:wrap;gap:10px;
+}
+.pill,.skill,.tech span{
+  border:1px solid #43434a;
+  background:#28282c;color:#dddde3;
+  padding:9px 12px;border-radius:18px;font-size:13px;
+}
+h2{font-size:34px;margin:0 0 24px}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px}
+.about-card,.info-card{
+  background:var(--card);border:1px solid #38383e;border-radius:18px;padding:24px;
+}
+.about-card p{color:#c4c5cc;line-height:1.8;margin:0}
+.info-card div{padding:10px 0;border-bottom:1px solid #3a3a40}
+.info-card div:last-child{border:0}
+.info-card b{display:block;color:#fff;margin-bottom:3px}
+.info-card span{color:#aeb0b8;font-size:13px}
+.skill{padding:12px 16px;background:#29292e}
+.projects{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
+}
+.project{
+  background:var(--card);
+  border:1px solid #393940;
+  border-radius:18px;
+  padding:20px;
+  transition:.22s;
+}
+.project:hover{transform:translateY(-4px);border-color:#805ad5;box-shadow:0 14px 35px rgba(0,0,0,.2)}
+.project-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.project-num{color:#777983;font-weight:800}
+.badge{
+  font-size:11px;color:#e9d5ff;background:#4c1d95;
+  border:1px solid #6d28d9;padding:5px 8px;border-radius:12px;
+}
+.project h3{font-size:19px;margin:13px 0 8px}
+.project p{color:#b8bac2;font-size:13px;line-height:1.55;margin:0 0 13px}
+.tech span{font-size:11px;padding:5px 8px}
+.project a{
+  display:inline-block;margin-top:14px;color:#d8b4fe;text-decoration:none;font-weight:700;font-size:13px;
+}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.contact-card{
+  background:var(--card);border:1px solid #393940;border-radius:18px;padding:25px;
+}
+.contact-card h3{margin-top:0}
+.contact-card p{color:#b9bbc2;line-height:1.65}
+.contact-link{
+  display:inline-block;color:#fff;text-decoration:none;
+  background:linear-gradient(135deg,#7c3aed,#a855f7);
+  padding:11px 16px;border-radius:12px;margin-top:8px;font-weight:700;
+}
+.side-nav{
+  background:#262629;border-left:1px solid #35353a;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+}
+.side-nav a{
+  width:42px;height:42px;border-radius:14px;display:grid;place-items:center;
+  text-decoration:none;color:#c5c6cc;border:1px solid #44444a;background:#303034;
+  transition:.2s;font-size:17px;
+}
+.side-nav a:hover,.side-nav a.active{
+  color:#fff;background:#6d28d9;border-color:#8b5cf6;
+}
+.mobile-title{display:none}
+@media(max-width:900px){
+  body{background:#1f1f22}
+  .app-shell{width:100%;height:auto;min-height:100vh;margin:0;border-radius:0;display:block;overflow:visible}
+  .profile{min-height:auto;padding:30px 20px}
+  .profile .short{max-width:440px}
+  .content{overflow:visible}
+  .side-nav{
+    position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
+    flex-direction:row;z-index:50;border:1px solid #444;border-radius:18px;
+    padding:8px 10px;background:rgba(35,35,39,.94);
+  }
+  .section{min-height:auto;padding:62px 24px}.about-card>div{grid-template-columns:1fr!important}
+  .hero-title{font-size:42px}
+  .about-grid,.contact-wrap,.projects{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="profile">
+    <div>
+      <div class="avatar">FK</div>
+      <h1>Faiqa Khan</h1>
+      <div class="role">AI / Generative AI Developer</div>
+      <p class="short">
+        Building practical AI applications with Python, Streamlit, RAG workflows and LLM APIs.
+      </p>
+      <div class="socials">
+        <a href="https://github.com/FaiqaK" target="_blank" title="GitHub">⌘</a>
+      </div>
+      <a class="profile-btn" href="#portfolio">View Projects</a>
+    </div>
+    <div class="small-foot">One-page AI portfolio</div>
+  </aside>
+
+  <main class="content" id="content">
+    <section class="section" id="home">
+      <div class="eyebrow">Welcome</div>
+      <h1 class="hero-title">Hi, I'm Faiqa.</h1>
+      <div class="hero-sub">I build AI-powered applications from idea to working interface.</div>
+      <div style="display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;color:#c8c9d1;font-size:13px;">
+        <span style="width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 12px rgba(34,197,94,.7);"></span>
+        Open to AI / ML / Generative AI opportunities
+      </div>
+      <div class="hero-pills">
+        <span class="pill">Python</span>
+        <span class="pill">Streamlit</span>
+        <span class="pill">RAG</span>
+        <span class="pill">OpenAI API</span>
+        <span class="pill">Machine Learning</span>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="eyebrow">About</div>
+      <h2>From mathematics to applied AI.</h2>
+      <div class="about-grid">
+        <div class="about-card">
+          <p>
+            I am a BS Mathematics graduate from the University of Education, Lahore, with a strong interest
+            in artificial intelligence, machine learning and generative AI development. My mathematics
+            background strengthened my analytical thinking, problem solving and understanding of data-driven
+            concepts. I now focus on turning AI ideas into complete applications — from Streamlit interfaces
+            and structured outputs to RAG assistants, autonomous research agents and evidence-based workflows.
+          </p>
+
+          <div style="margin-top:22px; display:grid; grid-template-columns:repeat(3,1fr); gap:10px;">
+            <div style="background:#242428;border:1px solid #393940;border-radius:14px;padding:14px;">
+              <div style="font-size:18px;">🧠</div>
+              <b style="display:block;margin:6px 0 3px;">Think</b>
+              <span style="color:#aeb0b8;font-size:12px;">Break complex problems into clear steps.</span>
+            </div>
+            <div style="background:#242428;border:1px solid #393940;border-radius:14px;padding:14px;">
+              <div style="font-size:18px;">⚙️</div>
+              <b style="display:block;margin:6px 0 3px;">Build</b>
+              <span style="color:#aeb0b8;font-size:12px;">Turn AI concepts into working applications.</span>
+            </div>
+            <div style="background:#242428;border:1px solid #393940;border-radius:14px;padding:14px;">
+              <div style="font-size:18px;">✨</div>
+              <b style="display:block;margin:6px 0 3px;">Refine</b>
+              <span style="color:#aeb0b8;font-size:12px;">Improve usability, clarity and reliability.</span>
+            </div>
+          </div>
+        </div>
+        <div class="info-card">
+          <div><b>Education</b><span>BS Mathematics — University of Education, Lahore</span></div>
+          <div><b>Graduation</b><span>2025</span></div>
+          <div><b>Focus</b><span>AI / ML / Generative AI</span></div>
+          <div><b>Core tools</b><span>Python, Streamlit, OpenAI API, LangChain</span></div>
+          <div><b>Portfolio</b><span>6 practical AI projects</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="eyebrow">Skills</div>
+      <h2>Technologies I work with</h2>
+      <div class="skill-grid">
+        <span class="skill">Python</span>
+        <span class="skill">Streamlit</span>
+        <span class="skill">OpenAI API</span>
+        <span class="skill">LangChain</span>
+        <span class="skill">RAG</span>
+        <span class="skill">Pydantic</span>
+        <span class="skill">NLP</span>
+        <span class="skill">Machine Learning</span>
+        <span class="skill">Pandas</span>
+        <span class="skill">NumPy</span>
+        <span class="skill">scikit-learn</span>
+        <span class="skill">Git & GitHub</span>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="eyebrow">Portfolio</div>
+      <h2>Selected projects</h2>
+      <div class="projects">
+
+        <article class="project">
+          <div class="project-top"><span class="project-num">01</span><span class="badge">Medical AI</span></div>
+          <h3>Medical Assistant</h3>
+          <p>AI-powered medical assistant for collecting health inputs and presenting structured AI-assisted guidance.</p>
+          <div class="tech"><span>Python</span><span>Streamlit</span><span>OpenAI API</span></div>
+          <a href="https://github.com/FaiqaK/Medical-assistant" target="_blank">View on GitHub ↗</a>
+        </article>
+
+        <article class="project">
+          <div class="project-top"><span class="project-num">02</span><span class="badge">RAG</span></div>
+          <h3>Document RAG Agent</h3>
+          <p>Document question-answering application that retrieves relevant chunks and produces grounded answers.</p>
+          <div class="tech"><span>Python</span><span>RAG</span><span>LangChain</span></div>
+          <a href="https://github.com/FaiqaK/Document-Rag-Agent" target="_blank">View on GitHub ↗</a>
+        </article>
+
+        <article class="project">
+          <div class="project-top"><span class="project-num">03</span><span class="badge">Finance AI</span></div>
+          <h3>AI-Powered Personal Financial</h3>
+          <p>AI assistant for organizing personal financial information and generating structured spending insights.</p>
+          <div class="tech"><span>Python</span><span>Streamlit</span><span>AI Agent</span></div>
+          <a href="https://github.com/FaiqaK/AI-Powered-personal-financial" target="_blank">View on GitHub ↗</a>
+        </article>
+
+        <article class="project">
+          <div class="project-top"><span class="project-num">04</span><span class="badge">Medical Guidance</span></div>
+          <h3>MEDI-GUIDE AI</h3>
+          <p>Structured medical guidance application that collects symptoms and produces clear preliminary assessments.</p>
+          <div class="tech"><span>Python</span><span>Streamlit</span><span>LLM</span></div>
+          <a href="https://github.com/FaiqaK/Medi-Guide-AI" target="_blank">View on GitHub ↗</a>
+        </article>
+
+        <article class="project">
+          <div class="project-top"><span class="project-num">05</span><span class="badge">Research Agent</span></div>
+          <h3>MarketMind AI</h3>
+          <p>Autonomous AI market research agent with evidence tracking, risk analysis, QC and report generation.</p>
+          <div class="tech"><span>Python</span><span>OpenAI API</span><span>Pydantic</span></div>
+          <a href="https://github.com/FaiqaK/Mastermind-ai" target="_blank">View on GitHub ↗</a>
+        </article>
+
+        <article class="project">
+          <div class="project-top"><span class="project-num">06</span><span class="badge">Customer Support RAG</span></div>
+          <h3>SupportPearlz</h3>
+          <p>RAG-powered customer support assistant for product, warranty, return, installation and troubleshooting questions.</p>
+          <div class="tech"><span>Python</span><span>Streamlit</span><span>RAG</span></div>
+          <a href="https://github.com/FaiqaK/Support-pearlz" target="_blank">View on GitHub ↗</a>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="eyebrow">Contact</div>
+      <h2>Let's connect.</h2>
+      <div class="contact-wrap">
+        <div class="contact-card">
+          <h3>GitHub</h3>
+          <p>See my repositories, source code and latest AI projects.</p>
+          <a class="contact-link" href="https://github.com/FaiqaK" target="_blank">Open GitHub ↗</a>
+        </div>
+        <div class="contact-card">
+          <h3>Portfolio</h3>
+          <p>This website is my public portfolio for AI, ML and Generative AI projects.</p>
+          <a class="contact-link" href="https://faiqak.github.io/" target="_blank">Portfolio Home ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="side-nav" aria-label="Portfolio navigation">
+    <a href="#home" data-target="home" title="Home">⌂</a>
+    <a href="#about" data-target="about" title="About">◉</a>
+    <a href="#skills" data-target="skills" title="Skills">◇</a>
+    <a href="#portfolio" data-target="portfolio" title="Portfolio">▣</a>
+    <a href="#contact" data-target="contact" title="Contact">✉</a>
+  </nav>
+</div>
+
+<script>
+const content = document.getElementById('content');
+const navLinks = [...document.querySelectorAll('.side-nav a')];
+const sections = [...document.querySelectorAll('.section')];
+
+function updateActive(){
+  let best = sections[0];
+  let bestDistance = Infinity;
+  const containerTop = content.getBoundingClientRect().top;
+  sections.forEach(section => {
+    const d = Math.abs(section.getBoundingClientRect().top - containerTop);
+    if(d < bestDistance){ bestDistance=d; best=section; }
+  });
+  navLinks.forEach(a => a.classList.toggle('active', a.dataset.target === best.id));
+}
+content.addEventListener('scroll', updateActive);
+window.addEventListener('load', updateActive);
+</script>
+</body>
+</html>
